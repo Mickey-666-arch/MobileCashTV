@@ -1,1 +1,303 @@
 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080e1d">
+  <title>MobileCashTV | Video Player</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #142347, #080e1d 65%);
+      color: #ffffff;
+      font-family: system-ui, sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #60a5fa;
+    }
+
+    .subtitle {
+      color: #a9bad7;
+      font-size: 14px;
+    }
+
+    .card {
+      background: #17233c;
+      border: 1px solid #2b3e60;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    button, .file-button {
+      flex: 1;
+      min-width: 130px;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      background: #2563eb;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    button.secondary {
+      background: #334766;
+    }
+
+    button:active, .file-button:active {
+      transform: scale(0.98);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .file-button:focus-within {
+      outline: 3px solid #93c5fd;
+      outline-offset: 3px;
+    }
+
+    #fileName {
+      color: #a9bad7;
+      margin-top: 16px;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 19px;
+    }
+
+    p, li {
+      color: #c5d2e8;
+      line-height: 1.7;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .notice {
+      font-size: 13px;
+      color: #a9bad7;
+    }
+
+    footer {
+      text-align: center;
+      color: #7386a7;
+      font-size: 13px;
+      margin-top: 28px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <h1>📺 MobileCashTV</h1>
+      <p class="subtitle">
+        Your Videos. Your Screen. Your TV.
+      </p>
+    </header>
+
+    <section class="card">
+      <video
+        id="videoPlayer"
+        controls
+        playsinline
+        preload="metadata">
+      </video>
+
+      <div class="buttons">
+
+        <label class="file-button">
+          📁 เลือกวิดีโอ
+          <input
+            type="file"
+            id="videoInput"
+            accept="video/*">
+        </label>
+
+        <button
+          class="secondary"
+          id="fullscreenButton"
+          type="button">
+          ⛶ เต็มจอ
+        </button>
+
+        <button
+          class="secondary"
+          id="castButton"
+          type="button">
+          📡 วิธี Cast
+        </button>
+
+      </div>
+
+      <p id="fileName" role="status" aria-live="polite">
+        ยังไม่ได้เลือกวิดีโอ
+      </p>
+    </section>
+
+    <section class="card" id="castGuide">
+      <h2>📡 Cast ไปยัง Google TV / Chromecast</h2>
+
+      <p>
+        สามารถใช้การสะท้อนหน้าจอจากโทรศัพท์
+        หรือคอมพิวเตอร์ไปยังทีวีได้
+      </p>
+
+      <h3>📱 สำหรับ Android</h3>
+      <ol>
+        <li>เชื่อมต่อโทรศัพท์และทีวีกับ Wi-Fi เดียวกัน</li>
+        <li>เปิดแอป Google Home หรือเมนูส่งหน้าจอที่อุปกรณ์รองรับ</li>
+        <li>เลือกทีวีที่ต้องการเชื่อมต่อ</li>
+        <li>เริ่มสะท้อนหน้าจอ แล้วกลับมาเปิดวิดีโอในเว็บไซต์นี้</li>
+      </ol>
+
+      <h3>💻 สำหรับคอมพิวเตอร์</h3>
+      <ol>
+        <li>เปิดเว็บไซต์นี้ใน Google Chrome</li>
+        <li>เปิดเมนู Chrome แล้วเลือก Cast</li>
+        <li>เลือกทีวีและแหล่งที่ต้องการส่งภาพ</li>
+        <li>เล่นวิดีโอบนเว็บไซต์</li>
+      </ol>
+
+      <p class="notice">
+        หมายเหตุ: การสะท้อนหน้าจอขึ้นอยู่กับอุปกรณ์
+        และเบราว์เซอร์ที่ใช้
+        บางรุ่นอาจไม่รองรับหรือมีความหน่วง
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>🔒 ความเป็นส่วนตัว</h2>
+      <p>
+        วิดีโอของคุณจะเล่นจากไฟล์ในเครื่องโดยตรง
+        ไม่มีการอัปโหลดวิดีโอไปยังเซิร์ฟเวอร์
+      </p>
+      <p class="notice">
+        แนะนำไฟล์ MP4 ที่ใช้ H.264/AAC
+        เพื่อความเข้ากันได้กับเบราว์เซอร์ส่วนใหญ่
+      </p>
+    </section>
+
+    <footer>
+      MobileCashTV © 2026
+    </footer>
+
+  </main>
+
+  <script>
+    const videoInput = document.getElementById("videoInput");
+    const videoPlayer = document.getElementById("videoPlayer");
+    const fileName = document.getElementById("fileName");
+    const fullscreenButton = document.getElementById("fullscreenButton");
+    const castButton = document.getElementById("castButton");
+
+    let currentVideoURL = null;
+
+    videoInput.addEventListener("change", function () {
+      const file = this.files[0];
+
+      if (!file) {
+        return;
+      }
+
+      if (!file.type.startsWith("video/")) {
+        fileName.textContent = "กรุณาเลือกไฟล์วิดีโอ";
+        return;
+      }
+
+      videoPlayer.pause();
+
+      if (currentVideoURL) {
+        URL.revokeObjectURL(currentVideoURL);
+      }
+
+      currentVideoURL = URL.createObjectURL(file);
+
+      videoPlayer.src = currentVideoURL;
+      videoPlayer.load();
+
+      fileName.textContent = "🎬 " + file.name;
+
+      videoPlayer.play().catch(function () {
+        // ผู้ใช้สามารถกดเล่นเองได้
+      });
+    });
+
+    fullscreenButton.addEventListener("click", function () {
+      if (videoPlayer.requestFullscreen) {
+        videoPlayer.requestFullscreen().catch(function () {});
+      } else if (videoPlayer.webkitEnterFullscreen) {
+        videoPlayer.webkitEnterFullscreen();
+      } else {
+        alert("เบราว์เซอร์นี้ไม่รองรับการเปิดเต็มจอ");
+      }
+    });
+
+    castButton.addEventListener("click", function () {
+      document.getElementById("castGuide").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+
+    videoPlayer.addEventListener("error", function () {
+      if (videoPlayer.src) {
+        fileName.textContent =
+          "ไม่สามารถเล่นวิดีโอนี้ได้ ลองใช้ไฟล์ MP4 (H.264)";
+      }
+    });
+
+    window.addEventListener("pagehide", function () {
+      if (currentVideoURL) {
+        URL.revokeObjectURL(currentVideoURL);
+      }
+    });
+  </script>
+</body>
+</html>
+
